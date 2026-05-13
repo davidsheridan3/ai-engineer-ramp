@@ -1,6 +1,5 @@
-text = input("Hey user, enter a sentence and I'll return a word count!!!!")
-
 def word_counter(text):
-    return len(text.split())
+    return "Total words: " + str(len(text.split()))
 
+text = input("Enter a sentence, I'll count the words: ")
 print(word_counter(text))
