@@ -1,4 +1,4 @@
-text = "I will be an amazing AI Engineer"
+text = input("Hey user, enter a sentence and I'll return a word count!!!!")
 words = text.split()
 count = len(words)
 
