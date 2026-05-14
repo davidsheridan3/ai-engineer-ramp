@@ -15,5 +15,8 @@ print(f"Total number of lines in 'sample.txt' is: {line_count}")
 char_count = len(file_content)
 print(f"Total number of characters in 'sample.txt' is: {char_count}")
 
+word_list = file_content.lower().split()
+print(word_list)
+
 
 
