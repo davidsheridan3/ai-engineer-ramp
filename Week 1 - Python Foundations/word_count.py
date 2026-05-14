@@ -9,5 +9,11 @@ try:
 except FileNotFoundError:
     print("Error: File 'sample.txt' not found. Please check file path and try again.")
 
+line_count = len(file_content.splitlines())
+print(f"Total number of lines in 'sample.txt' is: {line_count}")
+
+char_count = len(file_content)
+print(f"Total number of characters in 'sample.txt' is: {char_count}")
+
 
 
