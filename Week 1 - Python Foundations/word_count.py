@@ -4,6 +4,6 @@ with open("sample.txt", "r") as file:
 def word_counter(file_content):
     return len(file_content.split())
 
-print(word_counter(file_content))
+print(f"Total number of words in 'sample.txt' is: {word_counter(file_content)}")
 
 
