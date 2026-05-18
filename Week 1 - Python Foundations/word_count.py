@@ -51,7 +51,7 @@ def get_top_words(word_counts):
 
 def main():
     #Read file contents
-    text = read_file("sample.txt")
+    text = read_file("sample2.txt")
 
     #Generate text statistics
     word_count = count_words(text)
