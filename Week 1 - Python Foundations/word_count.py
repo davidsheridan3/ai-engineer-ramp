@@ -26,7 +26,14 @@ for word in word_list:
         word_counts[word] += 1
 
 
-print(word_counts)
+def get_top_words(word_counts):
+    sorted_words = sorted(word_counts.items(), key=lambda item: item[1], reverse=True)
+    return sorted_words[:5]
+
+top_words = get_top_words(word_counts)
+
+for word, count in top_words:
+    print(f"{word}: {count}")
 
 
 
