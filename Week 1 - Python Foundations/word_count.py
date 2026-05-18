@@ -18,5 +18,15 @@ print(f"Total number of characters in 'sample.txt' is: {char_count}")
 word_list = file_content.lower().split()
 print(word_list)
 
+word_counts = {}
+for word in word_list:
+    if word not in word_counts:
+        word_counts[word] = 1
+    else:
+        word_counts[word] += 1
+
+
+print(word_counts)
+
 
 
