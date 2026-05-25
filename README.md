@@ -1,112 +1,152 @@
-# AI Engineer Ramp-Up (12 Months)
+# AI Engineering Journey (2026)
 
-This repository documents my 12-month journey to becoming an applied AI engineer.
+This repository documents my ongoing journey toward becoming a stronger production-focused AI engineer.
 
-The focus is not courses or theory — it's building real systems through consistent daily work.
-
----
-
-## 🎯 Goal
-
-By the end of this plan, I aim to:
-
-* Build production-style AI systems end-to-end
-* Understand LLMs, RAG pipelines, and backend architecture
-* Ship multiple real-world tools and projects
+The focus is not passive learning or collecting certificates — it’s building real systems, understanding how modern AI infrastructure works, and developing the engineering skills required to ship AI applications in production environments.
 
 ---
 
-## ⚙️ Approach
+# 🎯 Goals
 
-I follow a strict daily system:
+The goal of this roadmap is to deepen my expertise across the modern AI engineering stack by combining:
 
-* **Learn (20–30 min)** → only what’s needed
-* **Build (60–80 min)** → main focus
-* **Review (15–25 min)** → improve code quality
+- Structured learning
+- Daily implementation
+- Real-world projects
+- Algorithmic problem solving
+- Production engineering practices
 
-Consistency > intensity.
+By the end of this journey, I aim to confidently:
 
----
-
-## 🧱 Project Structure
-
-Each phase focuses on a different layer of the stack:
-
-### Phase 1 — Python + Data
-
-* Scripts
-* File handling
-* APIs
-* Data processing (pandas)
-
-### Phase 2 — AI Systems
-
-* LLM APIs
-* Prompt engineering
-* Embeddings + vector databases
-* RAG pipelines
-
-### Phase 3 — Systems
-
-* FastAPI backends
-* Databases
-* Pipelines
-* Docker
-
-### Phase 4 — Advanced
-
-* System design
-* Optimization
-* Evaluation
-* Production readiness
+- Build and deploy production-style AI systems
+- Design RAG pipelines and AI workflows
+- Work with LLM APIs, embeddings, vector databases, and agents
+- Train, fine-tune, and deploy models
+- Build scalable backend systems for AI applications
+- Improve system design and software engineering depth
+- Strengthen problem-solving skills through LeetCode and Codewars
 
 ---
 
-## 🚀 Projects (in progress)
+# 🧱 Learning Structure
 
-This repo will contain multiple small and medium projects, including:
+This roadmap follows the Zero To Mastery AI Engineer path while simultaneously reinforcing software engineering fundamentals through practical coding challenges and projects.
 
-* CLI text analyzer
-* File organizer
-* API-based tools
-* Data cleaning pipelines
-* AI-powered summarizers
-* Document Q&A chatbot
+## Core Areas
 
-Each project is built iteratively and improved over time.
+### AI Engineering
 
----
+- LLMs
+- Prompt Engineering
+- RAG Systems
+- LangChain / LangGraph
+- AI Agents
+- Vector Databases
+- Hugging Face
+- Model Fine-Tuning
+- AI Evaluation & Deployment
 
-## 🧠 Philosophy
+### Software Engineering
 
-* Build before you feel ready
-* Ship imperfect code
-* Learn through debugging
-* Focus on real-world usefulness
+- Python
+- APIs
+- FastAPI
+- Databases
+- Docker
+- Backend Architecture
+- Data Pipelines
+- Cloud & AWS Fundamentals
 
----
+### Problem Solving
 
-## 📅 Progress
-
-Work is done daily in small increments.
-Projects and folders will reflect weekly progress.
-
----
-
-## 🔧 Tech Stack (evolving)
-
-* Python
-* pandas
-* APIs (OpenAI, etc.)
-* FastAPI
-* Vector DBs (Chroma, etc.)
-* PostgreSQL
-* Docker
+- LeetCode
+- Codewars
+- Algorithmic thinking
+- Data structures
+- Interview preparation
 
 ---
 
-## 📌 Note
+# ⚙️ Daily System
 
-This is a learning-by-building repository — expect messy commits, refactors, and iteration.
+Consistency is prioritized over intensity.
 
-That’s the point.
+## Typical Daily Workflow
+
+- **Learn** → targeted theory and course progression
+- **Build** → projects and implementation
+- **Solve** → LeetCode / Codewars problems
+- **Review** → refactoring, debugging, notes, and improvements
+
+The primary focus is always building.
+
+---
+
+# 🛠️ Current Learning Path
+
+## Zero To Mastery AI Engineer Path
+
+Current areas of study include:
+
+- Prompt Engineering & LLM Foundations
+- Advanced Python
+- RAG Engineering
+- AI Application Development
+- AWS SageMaker
+- Hugging Face Ecosystem
+- AI Agents & Multi-Agent Systems
+- Data Engineering Fundamentals
+
+---
+
+# 🚀 Projects
+
+This repository contains iterative AI engineering and backend projects, including:
+
+- AI-powered summarizers
+- Document Q&A systems
+- RAG pipelines
+- API-based tools
+- Data processing pipelines
+- AI agents
+- Backend services with FastAPI
+- Experimentation with vector databases and embeddings
+
+Projects are intentionally built incrementally and continuously improved over time.
+
+---
+
+# 🧠 Philosophy
+
+- Build before feeling ready
+- Learn through implementation
+- Ship imperfect systems
+- Embrace debugging
+- Prioritize consistency
+- Focus on practical engineering depth
+
+---
+
+# 🔧 Tech Stack
+
+Current technologies include:
+
+- Python
+- FastAPI
+- OpenAI APIs
+- LangChain
+- LangGraph
+- ChromaDB / Vector DBs
+- PostgreSQL
+- Docker
+- Hugging Face
+- AWS SageMaker
+- pandas
+
+This stack will continue evolving over time.
+
+---
+
+# 📈 Long-Term Focus
+
+The long-term goal is not simply to learn AI tools, but to become a stronger engineer capable of designing, building, deploying, and maintaining real-world AI systems.
