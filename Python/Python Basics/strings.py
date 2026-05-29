@@ -14,3 +14,7 @@ first_name = 'David'
 surname = 'Sheridan'
 fullname = first_name + ' ' + surname
 print(fullname)
+
+# String concatenation
+print('David' + 'Sheridan') # this runs fine!
+print('David' + 5) # this doesn't run as we can't add an integer to a string!
