@@ -1,254 +1,221 @@
 # This game was created using prompt engineering (natural language)
 
-"""
-Snake Game
------------
-Controls:
-- Arrow Keys to move
-- R to restart after game over
-
-Requirements:
-- Python 3 (no external libraries needed)
-"""
-
-import turtle
-import time
+import pygame
 import random
+import sys
 
-# ==========================================
-# WINDOW SETUP
-# ==========================================
+# ----------------------------
+# Configuration
+# ----------------------------
+WIDTH, HEIGHT = 600, 400
+GRID_SIZE = 20
+GRID_WIDTH = WIDTH // GRID_SIZE
+GRID_HEIGHT = HEIGHT // GRID_SIZE
 
-screen = turtle.Screen()
-screen.title("Snake Game")
-screen.bgcolor("black")
-screen.setup(width=600, height=600)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 200, 0)
+DARK_GREEN = (0, 150, 0)
+RED = (220, 50, 50)
+GRAY = (40, 40, 40)
+YELLOW = (255, 215, 0)
 
-# Turn off automatic screen updates
-# This makes animation smoother
-screen.tracer(0)
+START_SPEED = 10
+MAX_SPEED = 24
+SPEED_INCREASE = 1
 
-# ==========================================
-# SCORE DISPLAY
-# ==========================================
+pygame.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Snake Game")
+clock = pygame.time.Clock()
 
-score = 0
-high_score = 0
+font_small = pygame.font.SysFont("arial", 24)
+font_medium = pygame.font.SysFont("arial", 32)
+font_large = pygame.font.SysFont("arial", 48)
 
-pen = turtle.Turtle()
-pen.speed(0)
-pen.color("white")
-pen.penup()
-pen.hideturtle()
-pen.goto(0, 260)
 
-pen.write(
-    f"Score: {score}  High Score: {high_score}",
-    align="center",
-    font=("Arial", 18, "normal")
-)
+# ----------------------------
+# Helpers
+# ----------------------------
+def draw_text(text, font, color, surface, x, y, center=False):
+    render = font.render(text, True, color)
+    rect = render.get_rect()
+    if center:
+        rect.center = (x, y)
+    else:
+        rect.topleft = (x, y)
+    surface.blit(render, rect)
 
-# ==========================================
-# CREATE SNAKE HEAD
-# ==========================================
 
-head = turtle.Turtle()
-head.shape("square")
-head.color("lime")
-head.penup()
-head.goto(0, 0)
+def random_food_position(snake):
+    while True:
+        x = random.randint(0, GRID_WIDTH - 1) * GRID_SIZE
+        y = random.randint(0, GRID_HEIGHT - 1) * GRID_SIZE
+        if (x, y) not in snake:
+            return (x, y)
 
-# Direction starts stopped
-head.direction = "stop"
 
-# ==========================================
-# CREATE FOOD
-# ==========================================
+def draw_grid(surface):
+    for x in range(0, WIDTH, GRID_SIZE):
+        pygame.draw.line(surface, GRAY, (x, 0), (x, HEIGHT))
+    for y in range(0, HEIGHT, GRID_SIZE):
+        pygame.draw.line(surface, GRAY, (0, y), (WIDTH, y))
 
-food = turtle.Turtle()
-food.shape("circle")
-food.color("red")
-food.penup()
-food.goto(0, 100)
 
-# ==========================================
-# SNAKE BODY SEGMENTS
-# ==========================================
+def draw_snake(surface, snake):
+    for i, segment in enumerate(snake):
+        color = DARK_GREEN if i == 0 else GREEN
+        rect = pygame.Rect(segment[0], segment[1], GRID_SIZE, GRID_SIZE)
+        pygame.draw.rect(surface, color, rect)
+        pygame.draw.rect(surface, BLACK, rect, 1)
 
-segments = []
 
-# ==========================================
-# MOVEMENT FUNCTIONS
-# ==========================================
+def draw_food(surface, food):
+    rect = pygame.Rect(food[0], food[1], GRID_SIZE, GRID_SIZE)
+    pygame.draw.rect(surface, RED, rect)
+    pygame.draw.rect(surface, BLACK, rect, 1)
 
-def go_up():
-    if head.direction != "down":
-        head.direction = "up"
 
-def go_down():
-    if head.direction != "up":
-        head.direction = "down"
+def show_start_screen():
+    while True:
+        screen.fill(BLACK)
+        draw_text("SNAKE GAME", font_large, YELLOW, screen, WIDTH // 2, HEIGHT // 2 - 60, center=True)
+        draw_text("Use arrow keys to move", font_small, WHITE, screen, WIDTH // 2, HEIGHT // 2, center=True)
+        draw_text("Press SPACE to start", font_small, WHITE, screen, WIDTH // 2, HEIGHT // 2 + 40, center=True)
+        draw_text("Press ESC to quit", font_small, WHITE, screen, WIDTH // 2, HEIGHT // 2 + 70, center=True)
+        pygame.display.flip()
 
-def go_left():
-    if head.direction != "right":
-        head.direction = "left"
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    return
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
 
-def go_right():
-    if head.direction != "left":
-        head.direction = "right"
+        clock.tick(30)
 
-# ==========================================
-# MOVE SNAKE
-# ==========================================
 
-def move():
+def show_game_over_screen(score):
+    while True:
+        screen.fill(BLACK)
+        draw_text("GAME OVER", font_large, RED, screen, WIDTH // 2, HEIGHT // 2 - 60, center=True)
+        draw_text(f"Score: {score}", font_medium, WHITE, screen, WIDTH // 2, HEIGHT // 2, center=True)
+        draw_text("Press R to restart", font_small, WHITE, screen, WIDTH // 2, HEIGHT // 2 + 50, center=True)
+        draw_text("Press ESC to quit", font_small, WHITE, screen, WIDTH // 2, HEIGHT // 2 + 80, center=True)
+        pygame.display.flip()
 
-    x = head.xcor()
-    y = head.ycor()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    return
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
 
-    if head.direction == "up":
-        head.sety(y + 20)
+        clock.tick(30)
 
-    elif head.direction == "down":
-        head.sety(y - 20)
 
-    elif head.direction == "left":
-        head.setx(x - 20)
-
-    elif head.direction == "right":
-        head.setx(x + 20)
-
-# ==========================================
-# RESET GAME
-# ==========================================
-
-def reset_game():
-    global score
-
-    # Move head to center
-    head.goto(0, 0)
-    head.direction = "stop"
-
-    # Remove body segments
-    for segment in segments:
-        segment.goto(1000, 1000)
-
-    segments.clear()
-
+# ----------------------------
+# Main Game
+# ----------------------------
+def game_loop():
+    snake = [
+        (WIDTH // 2, HEIGHT // 2),
+        (WIDTH // 2 - GRID_SIZE, HEIGHT // 2),
+        (WIDTH // 2 - 2 * GRID_SIZE, HEIGHT // 2),
+    ]
+    direction = "RIGHT"
+    next_direction = direction
+    food = random_food_position(snake)
     score = 0
+    speed = START_SPEED
 
-    update_score()
+    running = True
+    while running:
+        # Event handling
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP and direction != "DOWN":
+                    next_direction = "UP"
+                elif event.key == pygame.K_DOWN and direction != "UP":
+                    next_direction = "DOWN"
+                elif event.key == pygame.K_LEFT and direction != "RIGHT":
+                    next_direction = "LEFT"
+                elif event.key == pygame.K_RIGHT and direction != "LEFT":
+                    next_direction = "RIGHT"
+                elif event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
 
-# ==========================================
-# UPDATE SCORE DISPLAY
-# ==========================================
+        direction = next_direction
 
-def update_score():
-    pen.clear()
+        # Move snake
+        head_x, head_y = snake[0]
+        if direction == "UP":
+            head_y -= GRID_SIZE
+        elif direction == "DOWN":
+            head_y += GRID_SIZE
+        elif direction == "LEFT":
+            head_x -= GRID_SIZE
+        elif direction == "RIGHT":
+            head_x += GRID_SIZE
 
-    pen.write(
-        f"Score: {score}  High Score: {high_score}",
-        align="center",
-        font=("Arial", 18, "normal")
-    )
+        new_head = (head_x, head_y)
 
-# ==========================================
-# KEYBOARD CONTROLS
-# ==========================================
+        # Wall collision
+        if (
+            head_x < 0
+            or head_x >= WIDTH
+            or head_y < 0
+            or head_y >= HEIGHT
+        ):
+            return score
 
-screen.listen()
+        # Self collision
+        if new_head in snake:
+            return score
 
-screen.onkeypress(go_up, "Up")
-screen.onkeypress(go_down, "Down")
-screen.onkeypress(go_left, "Left")
-screen.onkeypress(go_right, "Right")
+        snake.insert(0, new_head)
 
-screen.onkeypress(reset_game, "r")
-screen.onkeypress(reset_game, "R")
+        # Food collision
+        if new_head == food:
+            score += 1
+            food = random_food_position(snake)
+            if speed < MAX_SPEED:
+                speed += SPEED_INCREASE
+        else:
+            snake.pop()
 
-# ==========================================
-# MAIN GAME LOOP
-# ==========================================
+        # Draw everything
+        screen.fill(BLACK)
+        draw_grid(screen)
+        draw_food(screen, food)
+        draw_snake(screen, snake)
+        draw_text(f"Score: {score}", font_small, WHITE, screen, 10, 10)
+        draw_text(f"Speed: {speed}", font_small, WHITE, screen, 10, 35)
+        pygame.display.flip()
 
-delay = 0.1
+        clock.tick(speed)
 
-while True:
+    return score
 
-    screen.update()
 
-    # -----------------------------
-    # Check wall collision
-    # -----------------------------
-    if (
-        head.xcor() > 290
-        or head.xcor() < -290
-        or head.ycor() > 290
-        or head.ycor() < -290
-    ):
-        reset_game()
+def main():
+    while True:
+        show_start_screen()
+        score = game_loop()
+        show_game_over_screen(score)
 
-    # -----------------------------
-    # Check food collision
-    # -----------------------------
-    if head.distance(food) < 20:
 
-        # Move food to random location
-        x = random.randint(-280, 280)
-        y = random.randint(-280, 280)
-
-        # Snap to grid
-        x = round(x / 20) * 20
-        y = round(y / 20) * 20
-
-        food.goto(x, y)
-
-        # Create new body segment
-        segment = turtle.Turtle()
-        segment.speed(0)
-        segment.shape("square")
-        segment.color("green")
-        segment.penup()
-
-        segments.append(segment)
-
-        # Increase score
-        score += 10
-
-        if score > high_score:
-            high_score = score
-
-        update_score()
-
-        # Slightly increase speed
-        delay = max(0.05, delay - 0.002)
-
-    # -----------------------------
-    # Move body segments
-    # -----------------------------
-    for index in range(len(segments) - 1, 0, -1):
-
-        x = segments[index - 1].xcor()
-        y = segments[index - 1].ycor()
-
-        segments[index].goto(x, y)
-
-    if len(segments) > 0:
-        segments[0].goto(head.xcor(), head.ycor())
-
-    # Move head
-    move()
-
-    # -----------------------------
-    # Check self collision
-    # -----------------------------
-    for segment in segments:
-
-        if segment.distance(head) < 20:
-            reset_game()
-            delay = 0.1
-            break
-
-    time.sleep(delay)
-
-# Keep window open
-screen.mainloop()
+if __name__ == "__main__":
+    main()
