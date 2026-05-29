@@ -17,4 +17,8 @@ print(fullname)
 
 # String concatenation
 print('David' + 'Sheridan') # this runs fine!
-print('David' + 5) # this doesn't run as we can't add an integer to a string!
+# print('David' + 5) # this doesn't run as we can't add an integer to a string!
+
+# Type conversion
+number = str(100)
+print('David' + number) # converting the integer 100, to string '100', allows us to add it to 'David'
