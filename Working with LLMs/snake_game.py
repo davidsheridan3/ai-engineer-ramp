@@ -15,6 +15,7 @@ GRID_HEIGHT = HEIGHT // GRID_SIZE
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 200, 0)
+PURPLE = (128, 0, 128)
 DARK_GREEN = (0, 150, 0)
 RED = (220, 50, 50)
 GRAY = (40, 40, 40)
@@ -78,7 +79,7 @@ def draw_food(surface, food):
 
 def show_start_screen():
     while True:
-        screen.fill(BLACK)
+        screen.fill(PURPLE)
         draw_text("SNAKE GAME", font_large, YELLOW, screen, WIDTH // 2, HEIGHT // 2 - 60, center=True)
         draw_text("Use arrow keys to move", font_small, WHITE, screen, WIDTH // 2, HEIGHT // 2, center=True)
         draw_text("Press SPACE to start", font_small, WHITE, screen, WIDTH // 2, HEIGHT // 2 + 40, center=True)
@@ -101,7 +102,7 @@ def show_start_screen():
 
 def show_game_over_screen(score):
     while True:
-        screen.fill(BLACK)
+        screen.fill(PURPLE)
         draw_text("GAME OVER", font_large, RED, screen, WIDTH // 2, HEIGHT // 2 - 60, center=True)
         draw_text(f"Score: {score}", font_medium, WHITE, screen, WIDTH // 2, HEIGHT // 2, center=True)
         draw_text("Press R to restart", font_small, WHITE, screen, WIDTH // 2, HEIGHT // 2 + 50, center=True)
@@ -197,7 +198,7 @@ def game_loop():
             snake.pop()
 
         # Draw everything
-        screen.fill(BLACK)
+        screen.fill(PURPLE)
         draw_grid(screen)
         draw_food(screen, food)
         draw_snake(screen, snake)
