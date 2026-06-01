@@ -48,3 +48,13 @@ print('Hi, {}. You are {} years old.'.format(name, age)) # but this is slightly 
 # and if we just wanted to switch the order of the variables here:
 print('Hi, {1}. You are {0} years old.'.format(name, age)) # 0 = 1, 1 = 2
 
+# String indexes
+selfish = 'me me me'
+print(selfish[0]) # grab whatever is in index of 0 from string
+# [start:stop]
+print(selfish[1:6]) # start at index 2, end at index 6 (exclusive)
+# [start:stop:stepover]
+print(selfish[1:6:2]) # jumps to every second in index, rather than every single index
+# to reverse order (negative step over):
+print(selfish[::-1])
+
