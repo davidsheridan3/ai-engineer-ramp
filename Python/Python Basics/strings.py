@@ -58,3 +58,11 @@ print(selfish[1:6:2]) # jumps to every second in index, rather than every single
 # to reverse order (negative step over):
 print(selfish[::-1])
 
+# Immutability
+country = 'Ireland'
+# country[1] = 'T' # we cannot do this
+# print(country)
+# we can only change the string by reassigning a new value to the variable (as a whole):
+country = 'England'
+print(country)
+
