@@ -22,3 +22,47 @@ print('David' + 'Sheridan') # this runs fine!
 # Type conversion
 number = str(100)
 print('David' + number) # converting the integer 100, to string '100', allows us to add it to 'David'
+
+# Escape sequences
+# weather = 'It's sunny'' # simply doesn't work, python interpreter thinks the string is being ended after t
+# # so we use double quotes here
+# weather = "It's sunny"
+# print(weather)
+# # But what about:
+# weather = "It's "kind of" sunny" # breaks again
+# # so here we can use escape sequences (\):
+# weather_today = "It's \"kind of\" sunny"
+# # '\' means next character can be assumed a string
+# print(weather_today)
+# # '\n' = new line
+# # '\t' = tab
+
+# Formatted strings
+name = 'David'
+age = 22
+
+print('Hi, ' + name + '. You are ' + str(age) + ' years old.') # wayyy too tedious, lets juts add an 'f'!
+print(f"Hi, {name}. You are {age} years old.") # same output and still turns age int into str
+# also the same as f string is:
+print('Hi, {}. You are {} years old.'.format(name, age)) # but this is slightly more tedious
+# and if we just wanted to switch the order of the variables here:
+print('Hi, {1}. You are {0} years old.'.format(name, age)) # 0 = 1, 1 = 2
+
+# String indexes
+selfish = 'me me me'
+print(selfish[0]) # grab whatever is in index of 0 from string
+# [start:stop]
+print(selfish[1:6]) # start at index 2, end at index 6 (exclusive)
+# [start:stop:stepover]
+print(selfish[1:6:2]) # jumps to every second in index, rather than every single index
+# to reverse order (negative step over):
+print(selfish[::-1])
+
+# Immutability
+country = 'Ireland'
+# country[1] = 'T' # we cannot do this
+# print(country)
+# we can only change the string by reassigning a new value to the variable (as a whole):
+country = 'England'
+print(country)
+
