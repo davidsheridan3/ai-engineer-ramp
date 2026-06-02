@@ -15,3 +15,12 @@ print(amazon_cart[0::2]) # like strings, we can slice (by specifying indexes wit
 # However, lists unlike strings, are actually mutable
 amazon_cart[0] = 'vacuum'
 print(amazon_cart)
+
+# Matrix
+matrix = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]
+]
+# To access 5:
+print(matrix[1][1])
