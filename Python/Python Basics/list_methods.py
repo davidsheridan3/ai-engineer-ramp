@@ -22,8 +22,21 @@ basket = ['apple', 'banana', 'orange']
 # basket.clear()
 # print(basket)
 
-print(basket.index('banana')) # prints index of banana
-print(basket.index('orange', 0, 1)) # starts at index 0, stops at 1, error due to orange being at 2
+# print(basket.index('banana')) # prints index of banana
+# print(basket.index('orange', 0, 1)) # starts at index 0, stops at 1, error due to orange being at 2
+#
+# print('apple' in basket) # = True
+# print('cherry' in basket) # = False
 
-print('apple' in basket) # = True
-print('cherry' in basket) # = False
+numbers = [1, 2, 3, 4, 5, 8, 7, 6, 9, 11, 10]
+# numbers.sort() # sorts the numbers in order, can do the same for letters
+# print(numbers)
+
+# apart from sort() as a method, we also have a sorted function, which doesn't modify the basket, but creates a new one
+print(sorted(numbers))
+print(numbers) # two different lists
+
+basket.reverse() # reverses the order of the items in the basket
+print(basket)
+
+
