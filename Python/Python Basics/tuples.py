@@ -13,3 +13,20 @@ user = {
 }
 
 print(user[('name','age','gender')]) # it works!
+
+# Tuples
+my_new_tuple = (1,2,3,4,5,6,7,7,7)
+x = my_new_tuple[1] # 2
+y = my_new_tuple[2] # 3
+print(x)
+print(y)
+
+# as with lists, we can still do:
+a,b,c, *other = (1,2,3,4,5,6,7,7,7)
+print(a) # 1
+print(b) # 2
+print(*other) # 4,5,6,7
+
+print(my_new_tuple.count(7)) # 3 (counts frequency of stated item)
+print(my_new_tuple.index(7)) # returns index of 7 (6), if multiple, returns first occurrence
+print(len(my_new_tuple)) # returns amount of items (9)
