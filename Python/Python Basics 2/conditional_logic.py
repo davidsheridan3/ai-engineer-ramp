@@ -1,11 +1,9 @@
-is_old = False
+is_old = True
 is_licenced = True
 
-if is_old:
-    print('You are old enough to drive!')
-elif is_licenced:
-    print('You are licenced! You can drive now') # this runs as is_old = False, and is_licenced = True
+if is_old and is_licenced:
+    print('You are old enough to drive, and you have a licence!')
 else:
-    print('You are not old enough to drive!') # else: only runs if all other things fail
+    print('You need to be old enough and have a licence..... not today buddy!') # else: only runs if all other things fail
 
 print('After conditional block')
