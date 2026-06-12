@@ -22,8 +22,11 @@ basket = ['apple', 'banana', 'orange']
 # basket.clear()
 # print(basket)
 
-print(basket.index('banana')) # prints index of banana
-print(basket.index('orange', 0, 1)) # starts at index 0, stops at 1, error due to orange being at 2
+# print(basket.index('banana')) # prints index of banana
+# print(basket.index('orange', 0, 1)) # starts at index 0, stops at 1, error due to orange being at 2
+#
+# print('apple' in basket) # = True
+# print('cherry' in basket) # = False
 
-print('apple' in basket) # = True
-print('cherry' in basket) # = False
+print(basket.count('apple')) # counts how many times this value occurs in our list
+
