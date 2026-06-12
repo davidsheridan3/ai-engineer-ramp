@@ -28,5 +28,15 @@ basket = ['apple', 'banana', 'orange']
 # print('apple' in basket) # = True
 # print('cherry' in basket) # = False
 
-print(basket.count('apple')) # counts how many times this value occurs in our list
+numbers = [1, 2, 3, 4, 5, 8, 7, 6, 9, 11, 10]
+# numbers.sort() # sorts the numbers in order, can do the same for letters
+# print(numbers)
+
+# apart from sort() as a method, we also have a sorted function, which doesn't modify the basket, but creates a new one
+print(sorted(numbers))
+print(numbers) # two different lists
+
+basket.reverse() # reverses the order of the items in the basket
+print(basket)
+
 
