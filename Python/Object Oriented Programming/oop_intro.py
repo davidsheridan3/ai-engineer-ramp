@@ -11,8 +11,11 @@ obj3 = BigObject()
 # Creating our own objects:
 
 class PlayerCharacter:
+    # Class Object Attribute
+    membership = True # static, this is going to be true and exist for all objects
     def __init__(self, name): # self refers to PlayerCharacter
-        self.name = name # self refers to player
+        if self.membership:
+            self.name = name # self refers to player
 
     def run(self):
         print('run')
