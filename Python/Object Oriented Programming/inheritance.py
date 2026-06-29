@@ -28,4 +28,8 @@ archer1.attack() # attacking with 50 arrows
 # both of these have sign in function at the same time (extracting away part of code that they both share)
 # power of inheritance ^^^^
 
+# for checking if something is an instance of a class:
+print(isinstance(wizard1, Wizard))  # True, wizard1 is an instance of Wizard
+print(isinstance(wizard1, User)) # True, as wizard class is a subclass of user. We had to run User class to create wizard1
+
 
