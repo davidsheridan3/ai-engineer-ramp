@@ -13,7 +13,7 @@ print(new_list3)
 new_list4 = {num for num in new_list3 if num % 2 == 0}
 print(new_list4)
 
-# quick way for us to generate sets (remember sets only allow unique items, duplicates removed
+# quick way for us to generate sets (remember sets only allow unique items, duplicates dropped
 
 # now for dictionaries:
 
