@@ -8,5 +8,5 @@ for value in some_list:
 
 print(duplicates)
 
-duplicates = [char for char in some_list if some_list.count(char) > 1]
+duplicates = list({char for char in some_list if some_list.count(char) > 1}) # change from list to a set to just contain unique values
 print(duplicates)
