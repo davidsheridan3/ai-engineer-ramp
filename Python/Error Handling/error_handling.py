@@ -15,9 +15,11 @@
 while True:
     try:
         age = int(input('Enter your age: '))
-        print('Your age is', age)
-    except:
+        10/age
+    except ValueError:
         print('Please enter a number!')
+    except ZeroDivisionError:
+        print('Please enter a number greater than 0!')
     else:
         print('Thank you for your time!')
         break
