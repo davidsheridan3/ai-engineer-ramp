@@ -8,8 +8,8 @@
 def sum(num1, num2):
     try:
         return num1 + num2
-    except:
-        print('Something went wrong.')
+    except TypeError as err:
+        print(f'Please enter a number {err}') # err useful to give meaningful errors to users
 
 print(sum(1, '2')) # Something went wrong, but far too vague
 
