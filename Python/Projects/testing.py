@@ -3,14 +3,21 @@ import random_game
 
 class TestGame(unittest.TestCase):
     def test_input(self):
-        answer = 5
-        guess = 5
-        result = random_game.run_guess(guess, answer)
+        result = random_game.run_guess(5,5)
         self.assertTrue(result)
+
+    def test_input_wrong_guess(self):
+        result = random_game.run_guess(0,5)
+        self.assertFalse(result) # guessing that this will return false
+
+    def test_input_wrong_number(self):
+        result = random_game.run_guess(11,5)
+        self.assertFalse(result)
+
+    def test_input_string(self):
+        result = random_game.run_guess('udsad',5)
+        self.assertFalse(result)
 
 if __name__ == '__main__':
     unittest.main()
 
-
-# Ran 1 test in 0.000s
-# OK
